@@ -18,3 +18,6 @@ jobs:
 
             - name: install dependency
               run: npm ci
+
+            - name: restart backend
+              run: sudo pm2 restart backend
