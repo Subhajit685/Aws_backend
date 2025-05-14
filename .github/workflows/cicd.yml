@@ -1,0 +1,19 @@
+name: Node js cicd
+on:
+    push:
+        branches:
+            - main
+jobs:
+
+    test:
+        name: Test node project
+        runs-on: self-hosted
+        steps:
+            - name: Check Out
+              uses: actions/checkout@v4
+
+            - name: install node js
+              uses: actions/setup-node@v4
+
+            - name: install dependency
+              run: npm ci
