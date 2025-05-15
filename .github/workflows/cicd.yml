@@ -15,11 +15,12 @@ jobs:
 
             - name: install node js
               uses: actions/setup-node@v4
-              with:
-                node-version: 20
+
+            - name: node version
+              run: node -v
               
             - name: install dependency
               run: npm ci
 
-            - name: restart backend
-              run: sudo pm2 restart backend
+            # - name: restart backend
+            #   run: sudo pm2 restart backend
