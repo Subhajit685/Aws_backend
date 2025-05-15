@@ -22,5 +22,10 @@ jobs:
             - name: install dependency
               run: npm ci
 
+            - name: create env file
+              run: |
+                touch .env && sudo nano .env
+                echo "URL=${{secrets.URL}}" >> .env
+
             - name: restart backend
               run: sudo pm2 restart index
