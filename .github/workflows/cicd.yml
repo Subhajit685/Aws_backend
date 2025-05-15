@@ -24,7 +24,7 @@ jobs:
 
             - name: create env file
               run: |
-                touch .env && sudo nano .env
+                touch .env
                 echo "URL=${{secrets.URL}}" >> .env
 
             - name: restart backend
