@@ -18,12 +18,12 @@ connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: "http://13.60.85.176",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://13.60.85.176",
+//     credentials: true,
+//   })
+// );
 
 app.get("/user", async (req, res) => {
   const user = await User.find();

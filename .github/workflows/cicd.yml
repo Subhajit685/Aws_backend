@@ -6,26 +6,30 @@ on:
     workflow_dispatch:
 jobs:
 
-    test:
+    build:
         name: Test node project
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
         steps:
             - name: Check Out
               uses: actions/checkout@v4
 
-            - name: install node js
-              uses: actions/setup-node@v4
+            - name: docker login
+              run: docker login -u ${{secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
-            - name: node version
-              run: node -v
-              
-            - name: install dependency
-              run: npm ci
+            - name: build image
+              run: docker build -t babai12/aws_backend .
 
-            - name: create env file
-              run: |
-                touch .env
-                echo "URL=${{secrets.URL}}" >> .env
+            - name: push image 
+              run: docker push babai12/aws_backend:latest
 
-            - name: restart backend
-              run: sudo pm2 restart index
+    deploy:
+      runs-on: self-hosted
+      steps:
+        - name: pull image
+          run: docker pull babai12/aws_backend:latest
+
+        - name: delete old container
+          run: docker rm -f node_container
+
+        - name: run image
+          run: docker run -d -p 3000:3000 --name=node_container -e URL='${{secrets.URL}}' babai12/aws_backend:latest
