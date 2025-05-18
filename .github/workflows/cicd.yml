@@ -23,6 +23,7 @@ jobs:
               run: docker push babai12/aws_backend:latest
 
     deploy:
+      needs: build
       runs-on: self-hosted
       steps:
         - name: pull image
