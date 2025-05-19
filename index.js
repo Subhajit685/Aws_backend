@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://51.20.191.139:5173",
+    origin: "http://51.20.191.139",
     credentials: true,
   })
 );
