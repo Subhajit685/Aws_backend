@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://51.20.191.139",
+    origin: "http://51.20.191.139:80",
     credentials: true,
   })
 );
@@ -33,7 +33,7 @@ app.get("/user", async (req, res) => {
   return res.status(200).json({ success: true, user: user });
 });
 
-app.post("/", async (req, res) => {
+app.post("/add", async (req, res) => {
   const { name, email } = req.body;
   try {
     if (!name || !email) {
