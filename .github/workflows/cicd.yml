@@ -1,5 +1,6 @@
 name: Node js cicd
 on:
+  # Trigger the workflow on push to main branch or manually via workflow_dispatch
     push:
         branches:
             - main
