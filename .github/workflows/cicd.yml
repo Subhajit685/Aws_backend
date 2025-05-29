@@ -33,4 +33,4 @@ jobs:
           run: docker rm -f node_container
 
         - name: run image
-          run: docker run -d -p 3000:3000 --name=node_container -e URL='${{secrets.URL}}' babai12/aws_backend:latest
+          run: docker run -d -p 3000:3000 --name=node_container -e URL='${{secrets.URL}}' -e CLIENT_URL='${{secrets.CLIENT_URL}}' -e GOOGLE_CLIENT_ID='${{secrets.GOOGLE_CLIENT_ID}}' -e GOOGLE_CLIENT_SECRET='${{secrets.GOOGLE_CLIENT_SECRET}}' babai12/aws_backend:latest
